@@ -17,6 +17,7 @@ public class ClsBrowser extends ClsWebElements {
 		BrowserName = "Chrome";
 	}
 
+    
     public WebDriver OpenBrowser()
     {
         switch (BrowserName.toUpperCase()) {
@@ -26,7 +27,12 @@ public class ClsBrowser extends ClsWebElements {
 			objDriver.manage().window().maximize();
 			objDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 			break;
-
+		case "EDGE":
+			System.setProperty("webdriver.edge.driver", "./src/test/resources/selenium_driver/edgedriver.exe");
+			objDriver = new ChromeDriver();
+			objDriver.manage().window().maximize();
+			objDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			break;
 		default:
 			System.out.println("The browser is "+ BrowserName +" not supported.");
 			break;

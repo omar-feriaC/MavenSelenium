@@ -1,15 +1,21 @@
 package selenium;
 
+import static org.junit.Assert.assertEquals;
+
 import java.time.Duration;
 import java.util.List;
 import java.util.function.Function;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -99,6 +105,14 @@ public class ClsWebElements
 		return true;
 	}
     
+    public void SelectItem(final String pstrLocator, String pValue) 
+    {
+    	WebElement objElement = (WebElement) GetFluentWait(pstrLocator);
+    	objExplicitWait = new WebDriverWait(ClsBrowser.objDriver, 10);
+		objExplicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(pstrLocator)));
+    	Select selectObject = new Select(objElement);
+    	
+    }
     
     public void WaitForElement(final String pstrLocator) 
     {
@@ -113,6 +127,42 @@ public class ClsWebElements
     	objExplicitWait.until(ExpectedConditions.elementToBeClickable(By.xpath(pstrLocator)));
     }
     
+    public void WaitForLoad() {
+        ExpectedCondition<Boolean> pageLoadCondition = new
+                ExpectedCondition<Boolean>() {
+                    public Boolean apply(WebDriver driver) {
+                        return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
+                    }
+                };
+        WebDriverWait wait = new WebDriverWait(ClsBrowser.objDriver, 30);
+        wait.until(pageLoadCondition);
+    }
+    
+    public void LinkText(final String pstrLocator) 
+    {
+    	WebElement objElement = ClsBrowser.objDriver.findElement(By.linkText(pstrLocator));
+    	objElement.click();
+		
+    }
+    
+    
+    public void AcceptAlert() 
+    {
+    	WebDriverWait wait = new WebDriverWait(ClsBrowser.objDriver, 3000);
+    	wait.until(ExpectedConditions.alertIsPresent());
+    	Alert alert = ClsBrowser.objDriver.switchTo().alert();
+    	alert.accept();
+    }
+    
+    
+    public String GetAlertText() 
+    {
+    	WebDriverWait wait = new WebDriverWait(ClsBrowser.objDriver, 3000);
+    	wait.until(ExpectedConditions.alertIsPresent());
+    	//Alert alert = ClsBrowser.objDriver.switchTo().alert();
+    	String alertMessage = ClsBrowser.objDriver.switchTo().alert().getText();
+    	return alertMessage;
+    }
     
     
 }
