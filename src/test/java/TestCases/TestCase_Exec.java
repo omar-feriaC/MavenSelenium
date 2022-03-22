@@ -1,35 +1,32 @@
 package TestCases;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.Iterator;
-import java.util.List;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.ExtentSparkReporterConfig;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+
+import POM.AtLoginPage;
+import POM.BookStorePage;
 import selenium.ClsBrowser;
 
 public class TestCase_Exec extends ClsBrowser
 {
-	public String URL; 
+	public String URL;
+	
 	
 	@Before
 	public void setup() 
 	{
 		URL = "https://demoqa.com/";
-		ClsBrowser.BrowserName = "Edge";
+		ClsBrowser.BrowserName = "Chrome";
 		OpenBrowser();
+		
 	} 
 	
 	/*
@@ -63,10 +60,54 @@ public class TestCase_Exec extends ClsBrowser
 	}
 	*/
 	
-	/*
+	
 	@Test
 	public void FillElementsInput()
 	{
+		String DemoSite = "https://demoqa.com/login";
+		String PositionsURL = "https://positionsapp-uat.azurewebsites.net/#";
+		
+		NavigateToUrl(PositionsURL);
+		WaitForLoad();
+		
+		AtLoginPage objLogin = new AtLoginPage();
+		objLogin.enterCredential();
+		objLogin.startSession();
+		objLogin.keepSessionDialog();
+		objLogin.verifyActiveSession();
+		
+		/*
+		BookStorePage objBook = new BookStorePage();
+		objBook.LoginBookStore("oferia", "P@ssw0rd!123");
+		objBook.GoToBookStore();
+		objBook.SelectFirstBook();
+		objBook.AddFirstBook();
+		objBook.GoToProfilePage();
+		objBook.VerifyBooksAdded();
+		objBook.DeleteAllBooks();
+		
+		
+		ExtentReports extent = new ExtentReports();
+		ExtentSparkReporter spark = new ExtentSparkReporter("C:\\Report\\Spark.html");
+		spark.config(
+				  ExtentSparkReporterConfig.builder()
+				    .theme(Theme.STANDARD)
+				    .documentTitle("My Selenium Training Report")
+				    .build()
+				);
+		extent.attachReporter(spark);
+		ExtentTest testReport = extent.createTest("MyFirstTest");
+		testReport.log(Status.PASS, "This is a PASS message.");
+		testReport.log(Status.FAIL, "This is a FAIL message.");
+		testReport.log(Status.WARNING, "This is a WARNING message.");
+		testReport.log(Status.INFO, "This is a INFO message.");
+		testReport.log(Status.SKIP, "This is a SKIP message.");
+		
+		extent.flush();
+		*/
+		
+		
+		/*
 		//Go to URL QA DEMO
 		NavigateToUrl(URL);
 		WaitForLoad();
@@ -86,73 +127,11 @@ public class TestCase_Exec extends ClsBrowser
 		//SendKeys to inputs
 		WaitForElement("//input[@id='userName']");
 		SendKeys("//input[@id='userName']", "Test UserName");
-		
+		*/
 		
 	}
-	*/
 	
-	@Test
-	public void VerifyLoginAndAddBook()
-	{
-		NavigateToUrl("https://demoqa.com/login");
-		WaitForLoad();
-		
-		//Login
-		WaitForElement("//input[@id='userName']");
-		SendKeys("//input[@id='userName']", "oferia");
-		WaitForElement("//input[@id='password']");
-		SendKeys("//input[@id='password']", "P@ssw0rd!123");
-		Click("//button[@id='login']");
-		
-		//Go to books
-		WaitForLoad();
-		WaitForElement("//div[@class='ReactTable -striped -highlight']");
-		Click("//button[@id='gotoStore']");
-		
-		//Select First Book
-		WaitForElement("//a[text()='Git Pocket Guide']");
-		LinkText("Git Pocket Guide");
-		WaitForLoad();
-		WaitForElement("//div[@class='profile-wrapper']");
-		
-		//Add book
-		WaitForElement("//button[@id='addNewRecordButton']");
-		Click("(//button[@id='addNewRecordButton'])[2]");
-		Assert.assertEquals("Book added to your collection.", GetAlertText());
-		AcceptAlert();
-		
-		//Go to Profile
-		NavigateToUrl("https://demoqa.com/profile");
-		WaitForLoad();
-		WaitForElement("//div[@class='profile-wrapper']");
-		
-		//Get Web Elements
-		String bookTitle = "Git Pocket Guide"; 
-		List<WebElement> lsBooks = ClsBrowser.objDriver.findElements(By.xpath("//div[@class='action-buttons']//a"));
-		if(lsBooks.size() > 0) 
-		{ 
-			for (WebElement book : lsBooks) {
-				if(book.getText().equalsIgnoreCase(bookTitle)) 
-				{ 
-					System.out.println("The book: " + bookTitle + " was found as expected in the profile.");
-				}
-			}
-		}
-		else
-		{ 
-			System.out.println("The Profile did not contains any book stored with name: " + bookTitle);
-			Assert.fail();
-		}
-		
-		//Delete Book
-		WaitForLoad();
-		WaitForElement("(//button[text()='Delete All Books'])[1]");
-		Click("(//button[text()='Delete All Books'])[1]");
-		WaitForElement("//button[@id='closeSmallModal-ok']");
-		Click("//button[@id='closeSmallModal-ok']");
-		Assert.assertEquals("All Books deleted.", GetAlertText());
-		AcceptAlert();
-	}
+	
 	
 	
 	@After

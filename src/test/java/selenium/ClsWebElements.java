@@ -159,10 +159,12 @@ public class ClsWebElements
     {
     	WebDriverWait wait = new WebDriverWait(ClsBrowser.objDriver, 3000);
     	wait.until(ExpectedConditions.alertIsPresent());
-    	//Alert alert = ClsBrowser.objDriver.switchTo().alert();
+    	Alert alert = ClsBrowser.objDriver.switchTo().alert();
     	String alertMessage = ClsBrowser.objDriver.switchTo().alert().getText();
     	return alertMessage;
     }
+    
+    
     
     
 }
