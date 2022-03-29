@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
 import selenium.ClsBrowser;
-import selenium.ClsWebElements;
 
 public class AtLoginPage extends ClsBrowser{
 	

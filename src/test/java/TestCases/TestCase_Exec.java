@@ -2,144 +2,93 @@ package TestCases;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
+import org.openqa.selenium.By;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.aventstack.extentreports.reporter.configuration.ExtentSparkReporterConfig;
-import com.aventstack.extentreports.reporter.configuration.Theme;
-
 import POM.AtLoginPage;
-import POM.BookStorePage;
 import selenium.ClsBrowser;
+import selenium.ClsReport;
+import selenium.ClsWebElements;
 
 public class TestCase_Exec extends ClsBrowser
 {
+	@Rule public TestName TC_Name = new TestName();
 	public String URL;
 	
+	@BeforeClass
+	public static void beforeClass() 
+	{
+		ClsReport.fnSetupReport();
+	}
 	
 	@Before
 	public void setup() 
 	{
-		URL = "https://demoqa.com/";
 		ClsBrowser.BrowserName = "Chrome";
 		OpenBrowser();
-		
 	} 
 	
-	/*
-	@Test
-	public void DataDriverTest() 
-	{
-		try {
-			String SetTemp = "2";
-			String TempValues = "";
-			int intCount = 2;
-            String rutaArchivoExcel = "./src/test/resources/Driver/DataDriver.xlsx";
-            FileInputStream inputStream = new FileInputStream(new File(rutaArchivoExcel));
-            Workbook workbook = new XSSFWorkbook(inputStream);
-            Sheet firstSheet = workbook.getSheetAt(0);
-            Iterator iterator = firstSheet.iterator();
-            
-            DataFormatter formatter = new DataFormatter();
-            while (iterator.hasNext()) {
-                Row nextRow = (Row) iterator.next();
-                Iterator cellIterator = nextRow.cellIterator();
-                while(cellIterator.hasNext()) {
-                	Cell cell = (Cell) cellIterator.next();
-                    String contenidoCelda = formatter.formatCellValue(cell);
-                    System.out.println("celda: " + contenidoCelda);
-                }
-                
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-	}
-	*/
-	
 	
 	@Test
-	public void FillElementsInput()
+	public void FirstTC()
 	{
-		String DemoSite = "https://demoqa.com/login";
-		String PositionsURL = "https://positionsapp-uat.azurewebsites.net/#";
-		
-		NavigateToUrl(PositionsURL);
-		WaitForLoad();
-		
-		AtLoginPage objLogin = new AtLoginPage();
-		objLogin.enterCredential();
-		objLogin.startSession();
-		objLogin.keepSessionDialog();
-		objLogin.verifyActiveSession();
-		
-		/*
-		BookStorePage objBook = new BookStorePage();
-		objBook.LoginBookStore("oferia", "P@ssw0rd!123");
-		objBook.GoToBookStore();
-		objBook.SelectFirstBook();
-		objBook.AddFirstBook();
-		objBook.GoToProfilePage();
-		objBook.VerifyBooksAdded();
-		objBook.DeleteAllBooks();
-		
-		
-		ExtentReports extent = new ExtentReports();
-		ExtentSparkReporter spark = new ExtentSparkReporter("C:\\Report\\Spark.html");
-		spark.config(
-				  ExtentSparkReporterConfig.builder()
-				    .theme(Theme.STANDARD)
-				    .documentTitle("My Selenium Training Report")
-				    .build()
-				);
-		extent.attachReporter(spark);
-		ExtentTest testReport = extent.createTest("MyFirstTest");
-		testReport.log(Status.PASS, "This is a PASS message.");
-		testReport.log(Status.FAIL, "This is a FAIL message.");
-		testReport.log(Status.WARNING, "This is a WARNING message.");
-		testReport.log(Status.INFO, "This is a INFO message.");
-		testReport.log(Status.SKIP, "This is a SKIP message.");
-		
-		extent.flush();
-		*/
-		
-		
-		/*
-		//Go to URL QA DEMO
-		NavigateToUrl(URL);
-		WaitForLoad();
-		
-		//Go to Elements Menu
-		WaitForElement("//h5[text()='Elements']");
-		WaitForElementClickable("//h5[text()='Elements']");
-		Click("//h5[text()='Elements']");
-		
-		//Wait for Elements Page
-		WaitForElement("//div[@class='main-header' and text()='Elements']");
-		
-		//Click TextBoxes
-		WaitForElement("//li[span[text()='Text Box']]");
-		Click("//li[span[text()='Text Box']]");
-		
-		//SendKeys to inputs
-		WaitForElement("//input[@id='userName']");
-		SendKeys("//input[@id='userName']", "Test UserName");
-		*/
-		
+		try 
+		{
+			ClsReport.objTest = ClsReport.objExtent.createTest("First Test");
+			URL = "https://positionsapp-uat.azurewebsites.net/#";
+			NavigateToUrl(URL);
+			WaitForLoad();
+			ClsReport.fnLog(Status.PASS, "First Log Comment.", false);
+			AtLoginPage objLogin = new AtLoginPage();
+			objLogin.enterCredential();
+			objLogin.startSession();
+			objLogin.keepSessionDialog();
+			objLogin.verifyActiveSession();
+			ClsReport.fnLog(Status.PASS, "Second Log Comment.", true);
+			getGetWebElement(By.xpath("//sdsd"));
+		}
+		catch(Exception e) 
+		{
+			ClsReport.fnLog(Status.FAIL, "The: " + TC_Name.getMethodName() + " was not executed successfully. \n Exception: " + e.getMessage() , false);
+		}
 	}
-	
-	
+		
+		
+	@Test
+	public void SecondTC()
+	{
+		try 
+		{
+			ClsReport.objTest = ClsReport.objExtent.createTest("First Test");
+			URL = "https://xzfsadfsadfsdfpositionsapp-uat.azurewebsites.net/#";
+			NavigateToUrl(URL);
+			WaitForLoad();
+			ClsReport.fnLog(Status.PASS, "First Log Comment.", false);
+			AtLoginPage objLogin = new AtLoginPage();
+			objLogin.enterCredential();
+			objLogin.startSession();
+			objLogin.keepSessionDialog();
+			objLogin.verifyActiveSession();
+			ClsReport.fnLog(Status.PASS, "Second Log Comment.", true);
+		}
+		catch (Exception e) 
+		{
+			ClsReport.fnLog(Status.FAIL, "The: " + TC_Name.getMethodName() + " was not executed successfully. \n Exception: " + e.getMessage() , false);
+		}
+	}
+		
 	
 	
 	@After
 	public void tearDown() 
 	{
 		CloseBrowser();
+		ClsReport.fnCloseReport();
 	}
-	
-	
+
 
 }
