@@ -16,7 +16,8 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 
 public class ClsReport 
 {
-	public static String reportLocation = "C:\\Report\\Spark.html"; 
+	//public static String reportLocation = "C:\\Report\\Spark.html"; 
+	public static String reportLocation = "";
 	public static ExtentReports objExtent;
 	public static ExtentSparkReporter objSpark;
 	public static ExtentTest objTest; 
@@ -64,7 +65,7 @@ public class ClsReport
 	
 	
 	/**
-	 * Takes an screenshot in the step 
+	 * Takes an screenshot of the execution step
 	 * @return
 	 */
 	private static String fnScreenshot() 

@@ -10,8 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ClsBrowser extends ClsWebElements {
 	
+	
 	public static String BrowserName;
-	public static WebDriver objDriver;
+	private static WebDriver objDriver;
     public static WebDriverWait wait;
     
     

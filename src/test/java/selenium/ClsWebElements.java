@@ -28,19 +28,19 @@ public class ClsWebElements
     public static WebDriverWait objExplicitWait;
     public static String strAction = "";
 	
-    
+
     public WebElement getGetWebElement(By by)
     {
         try
         {
-        	ClsReport.fnLog(Status.INFO, "Step - Get Web Element: " + by.toString(), false);
+        	ClsReport.fnLog(Status.INFORMATION, "Step - Get Web Element: " + by.toString(), false);
             WebElement pobjElement = ClsBrowser.objDriver.findElement(by);
             ClsReport.fnLog(Status.PASS, "Step - The Web Element: " + by.toString() + " was found as expected.", false);
             return pobjElement;
         }
-        catch (Exception pobjException)
+        catch (NoSuchElementException pobjException)
         {
-        	ClsReport.fnLog(Status.FAIL, "Step - The Web Element: " + by.toString() + " was not found as expected.", true);
+        	ClsReport.fnLog(Status.FAIL, "Step - The Web Element: " + by.toString() + " was not found as expected. Exception: " + pobjException.getStackTrace(), true);
         	return null;
         }
     }
@@ -150,11 +150,12 @@ public class ClsWebElements
     		return false;
     	}
 		
+    	return null;
 	}
     
     public boolean SendKeys(final String pstrLocator, String pValue) 
     {
-    	return SendKeys(By.xpath(pstrLocator), pValue);
+    	return SendKeys(By.xpaths(pstrLocator), pValue);
     }
     
     
