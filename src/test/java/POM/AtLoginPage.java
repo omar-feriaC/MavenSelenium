@@ -60,6 +60,8 @@ public class AtLoginPage extends ClsBrowser{
 		Click(KeepSessionYesBtn);
 	}
 	
+	
+	
 	public void verifyActiveSession() 
 	{
 		WaitForLoad();
@@ -70,4 +72,6 @@ public class AtLoginPage extends ClsBrowser{
 	}
 	
 
+	
+	
 }
