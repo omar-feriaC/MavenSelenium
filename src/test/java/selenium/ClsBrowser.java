@@ -19,7 +19,7 @@ public class ClsBrowser extends ClsWebElements {
     public ClsBrowser() {
 		BrowserName = "Chrome";
 	}
-
+ 
     
     public WebDriver OpenBrowser()
     {

@@ -25,7 +25,7 @@ public class AtLoginPage extends ClsBrowser{
 	String KeepSessionYesBtn = "//input[starts-with(@id, 'idSIButton')]";
 	String Title = "//title";
 	
-	
+	 
 	//Methods
 	
 	/**
