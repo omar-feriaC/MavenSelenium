@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import java.time.Duration;
 import java.util.List;
 import java.util.function.Function;
-
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
