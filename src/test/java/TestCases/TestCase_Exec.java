@@ -40,13 +40,17 @@ public class TestCase_Exec extends ClsBrowser
 			URL = "https://positionsapp-uat.azurewebsites.net/#";
 			NavigateToUrl(URL);
 			WaitForLoad();
-			ClsReport.fnLog(Status.PASS, "First Log Comment.", false);
+			ClsReport.fnLog(Status.PASS, "Loaded page", false);
 			AtLoginPage objLogin = new AtLoginPage();
 			objLogin.enterCredential();
+			ClsReport.fnLog(Status.PASS, "Entered Credential", false);
 			objLogin.startSession();
+			ClsReport.fnLog(Status.PASS, "Started Session", false);
 			objLogin.keepSessionDialog();
+			ClsReport.fnLog(Status.PASS, "Keep session alert", false);
 			objLogin.verifyActiveSession();
-			ClsReport.fnLog(Status.PASS, "Second Log Comment.", true);
+			WaitForLoad();
+			ClsReport.fnLog(Status.PASS, "Logged-in and loaded the page", true);
 		}
 		catch(Exception e) 
 		{
@@ -62,16 +66,20 @@ public class TestCase_Exec extends ClsBrowser
 		try 
 		{
 			ClsReport.objTest = ClsReport.objExtent.createTest("Second Test");
-			URL = "https://xzfsadfsadfsdfpositionsapp-uat.azurewebsites.net/#";
+			URL = "https://positionsapp-uat.azurewebsites.net/#";
 			NavigateToUrl(URL);
 			WaitForLoad();
-			ClsReport.fnLog(Status.PASS, "First Log Comment.", false);
+			ClsReport.fnLog(Status.PASS, "Loaded page", false);
 			AtLoginPage objLogin = new AtLoginPage();
 			objLogin.enterCredential();
+			ClsReport.fnLog(Status.PASS, "Entered Credential", false);
 			objLogin.startSession();
+			ClsReport.fnLog(Status.PASS, "Started Session", false);
 			objLogin.keepSessionDialog();
+			ClsReport.fnLog(Status.PASS, "Keep session alert", false);
 			objLogin.verifyActiveSession();
-			ClsReport.fnLog(Status.PASS, "Second Log Comment.", true);
+			WaitForLoad();
+			ClsReport.fnLog(Status.PASS, "Logged-in and loaded the page", true);
 		}
 		catch (Exception e) 
 		{
@@ -80,29 +88,31 @@ public class TestCase_Exec extends ClsBrowser
 	}
 	
 	@Test 
-	public void NewTest()
+	public void ThirdTC()
 	{
 		try 
 		{
-			ClsReport.objTest = ClsReport.objExtent.createTest("Second Test");
-			URL = "https://xzfsadfsadfsdfpositionsapp-uat.azurewebsites.net/#";
+			ClsReport.objTest = ClsReport.objExtent.createTest("Third Test");
+			URL = "https://positionsapp-uat.azurewebsites.net/#";
 			NavigateToUrl(URL);
 			WaitForLoad();
-			ClsReport.fnLog(Status.PASS, "First Log Comment.", false);
+			ClsReport.fnLog(Status.PASS, "Loaded page", false);
 			AtLoginPage objLogin = new AtLoginPage();
 			objLogin.enterCredential();
+			ClsReport.fnLog(Status.PASS, "Entered Credential", false);
 			objLogin.startSession();
+			ClsReport.fnLog(Status.PASS, "Started Session", false);
 			objLogin.keepSessionDialog();
+			ClsReport.fnLog(Status.PASS, "Keep session alert", false);
 			objLogin.verifyActiveSession();
-			ClsReport.fnLog(Status.PASS, "Second Log Comment.", true);
+			WaitForLoad();
+			ClsReport.fnLog(Status.PASS, "Logged-in and loaded the page", true);
 		}
 		catch (Exception e) 
 		{
 			ClsReport.fnLog(Status.FAIL, "The: " + TC_Name.getMethodName() + " was not executed successfully. \n Exception: " + e.getMessage() , false);
 		}
 	}
-	
-	
 	
 	@After
 	public void tearDown() 
