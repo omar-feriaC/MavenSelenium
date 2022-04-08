@@ -2,6 +2,8 @@ package TestCases;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
+import org.junit.Rule;
 import org.junit.BeforeClass;
 import org.junit.rules.TestName;
 
@@ -29,7 +31,7 @@ public class TestCase_Exec extends ClsBrowser
 	} 
 	
 	
-	
+	@Test
 	public void FirstTC()
 	{
 		try 
@@ -54,6 +56,7 @@ public class TestCase_Exec extends ClsBrowser
 		
 		
 	
+	@Test
 	public void SecondTC()
 	{
 		try 
@@ -76,7 +79,7 @@ public class TestCase_Exec extends ClsBrowser
 		}
 	}
 	
-	//@Test 
+	@Test 
 	public void NewTest()
 	{
 		try 
@@ -101,13 +104,6 @@ public class TestCase_Exec extends ClsBrowser
 	
 	
 	
-	@After
-	public void tearDown() 
-	{
-		CloseBrowser();
-		ClsReport.fnCloseReport();
-	}
-
 	@After
 	public void tearDown() 
 	{
