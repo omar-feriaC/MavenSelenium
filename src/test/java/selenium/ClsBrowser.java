@@ -21,9 +21,10 @@ public class ClsBrowser extends ClsWebElements {
 	}
 
 	/**
-	 * Method to Setup a WebDriver and Open it
+	 * Method to setup a {@link WebDriver} and Open it
 	 *
-	 * If linux is used is expected the select driver to be loaded by the path
+	 * if Host machine is using liunux OS, {@link WebDriver} is espected to be on
+	 * the $PATH enviroment variable
 	 */
 	public WebDriver OpenBrowser() {
 		switch (BrowserName.toUpperCase()) {
@@ -53,11 +54,19 @@ public class ClsBrowser extends ClsWebElements {
 		return objDriver;
 	}
 
+	/**
+	 * Funtion to Close the {@link WebDriver}
+	 */
 	public void CloseBrowser() {
 		objDriver.close();
 		objDriver.quit();
 	}
 
+	/**
+	 * Funtion to send the Driver to a sepecified Url
+	 *
+	 * @param Url Direction to be send to
+	 */
 	public void NavigateToUrl(String pstrUrl) {
 		objDriver.get(pstrUrl);
 	}

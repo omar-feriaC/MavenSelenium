@@ -37,9 +37,10 @@ public class ClsReport {
 		// Set up dir for the reports
 		SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy_hh-mm");
 		Date date = new Date(System.currentTimeMillis());
-		reportLocation = reportLocation + getStringPath(title +"_"+ formatter.format(date)+"/");
+		reportLocation = reportLocation + getStringPath(title + "_" + formatter.format(date) + "/");
 		File reportDir = new File(reportLocation);
-		if(!reportDir.mkdirs()) System.out.println("Report Directory made at"+ reportLocation);
+		if (!reportDir.mkdirs())
+			System.out.println("Report Directory made at" + reportLocation);
 		// Start the report
 		objExtent = new ExtentReports();
 		objSpark = new ExtentSparkReporter(reportLocation);
@@ -57,9 +58,9 @@ public class ClsReport {
 	/**
 	 * Log the steps during execution time
 	 * 
-	 * @param status
-	 * @param description
-	 * @param takeScreenshot
+	 * @param status         Status to be logged
+	 * @param description    What happened on the step
+	 * @param takeScreenshot Boolean if to take a screenshot of the step
 	 */
 	public static void fnLog(Status status, String description, Boolean takeScreenshot) {
 		if (takeScreenshot) {
@@ -72,7 +73,7 @@ public class ClsReport {
 	/**
 	 * Takes an screenshot of the execution step
 	 * 
-	 * @return
+	 * @return String to the image file
 	 */
 	private static String fnScreenshot() {
 		String strFileLocation;
@@ -83,7 +84,7 @@ public class ClsReport {
 			File scrFile = ((TakesScreenshot) ClsBrowser.objDriver).getScreenshotAs(OutputType.FILE);
 			strFileLocation = reportLocation + "images/" + strSSName.toString() + ".png";
 			strFileLocation = getStringPath(strFileLocation);
-			File savedImage =  new File(strFileLocation);
+			File savedImage = new File(strFileLocation);
 			FileUtils.copyFile(scrFile, savedImage);
 			return savedImage.getAbsolutePath();
 		} catch (Exception e) {
