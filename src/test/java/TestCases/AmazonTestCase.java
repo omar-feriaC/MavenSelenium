@@ -35,7 +35,7 @@ public class AmazonTestCase extends ClsBrowser {
 	public void PromotionsTC() {
 		try {
 			// Go to https://www.amazon.com.mx/ and start a new valid session.
-			ClsReport.objTest = ClsReport.objExtent.createTest("Third Test");
+			ClsReport.objTest = ClsReport.objExtent.createTest("Amazon Promotions Test");
 			URL = "https://www.amazon.com.mx/";
 			NavigateToUrl(URL);
 			AmazonPromotionsPage objAmzPage = new AmazonPromotionsPage();

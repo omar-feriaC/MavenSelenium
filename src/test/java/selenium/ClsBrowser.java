@@ -55,7 +55,7 @@ public class ClsBrowser extends ClsWebElements {
 	}
 
 	/**
-	 * Funtion to Close the {@link WebDriver}
+	 * Function to Close the {@link WebDriver}
 	 */
 	public void CloseBrowser() {
 		objDriver.close();
@@ -63,7 +63,7 @@ public class ClsBrowser extends ClsWebElements {
 	}
 
 	/**
-	 * Funtion to send the Driver to a sepecified Url
+	 * Function to send the Driver to a sepecified Url
 	 *
 	 * @param Url Direction to be send to
 	 */
