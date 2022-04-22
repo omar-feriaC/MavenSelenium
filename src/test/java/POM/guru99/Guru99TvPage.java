@@ -42,13 +42,10 @@ public class Guru99TvPage extends ClsBrowser {
 	 * @param tvLocator Xpath to the Tv Element
 	 */
 	public void addToCart(String tvLocator) {
-		/*
-		 * TODO verify it selects the appropiate tv
-		 */
 		WebElement tvAddButton = getGetWebElement(tvLocator + tvAddCart);
 		if (tvAddButton.getText().equalsIgnoreCase("ADD TO CART")) {
 			ClsReport.fnLog(Status.INFO, "Step - Element: tvElement has 'Add to Cart' Button", false);
-			Click(tvAddCart);
+			Click(tvLocator+tvAddCart);
 			ClsReport.fnLog(Status.PASS, "Step - Element: 'Add to Cart' Button Succesfully clicked", false);
 		}
 	}

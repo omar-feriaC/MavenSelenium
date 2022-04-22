@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.Rule;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.rules.TestName;
 
 import com.aventstack.extentreports.Status;
@@ -71,7 +72,7 @@ public class Guru99TestCase extends ClsBrowser {
 	public void ShopSamsung() {
 		try {
 			ClsReport.objTest = ClsReport.objExtent.createTest("Guru99 Shop for Samsung Tv");
-			// before step: Open "http://live.guru99.com/index.php/tv.htmdata-target-element="#header-account"l"
+			// before step: Open "http://live.guru99.com/index.php/tv.html"
 			String smTv = "Samsung LCD";
 			// Step: click on the LG LCD on the add button
 			// Assert LG LCD is present
