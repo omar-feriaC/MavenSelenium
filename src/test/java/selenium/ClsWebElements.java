@@ -63,10 +63,13 @@ public class ClsWebElements {
      */
     public List<WebElement> getWebList(By by) {
         try {
+            ClsReport.fnLog(Status.INFO, "Step - Get Web Elements: " + by.toString(), false);
             List<WebElement> pobjElement = ClsBrowser.objDriver.findElements(by);
+            ClsReport.fnLog(Status.PASS, "Step - The Web Elements: " + by.toString() + " were found as expected.", false);
             return pobjElement;
         } catch (Exception pobjException) {
-            System.out.println("The element was (" + by.toString() + ") not located in the page");
+            ClsReport.fnLog(Status.FAIL, "Step - The Web Elements: " + by.toString()
+                    + " was not found as expected. Exception: " + pobjException.getStackTrace(), true);
             return null;
         }
     }
@@ -88,7 +91,7 @@ public class ClsWebElements {
      * @param pstrLocator Xpath for the element to wait on
      * @return {@link WebElement} or Null if element not found
      */
-    public Object GetFluentWait(final String pstrLocator) {
+    public WebElement GetFluentWait(final String pstrLocator) {
         return GetFluentWait(By.xpath(pstrLocator));
     }
 
@@ -96,10 +99,10 @@ public class ClsWebElements {
      * Get a WebElement after it loads waiting for 30s and checking in intervals of
      * 5 seconds
      * 
-     * @param by {@link By} objecto to get the WebElement
+     * @param by {@link By} object to get the WebElement
      * @return {@link WebElement} selected or NULL if not found/loaded
      */
-    public Object GetFluentWait(final By by) {
+    public WebElement GetFluentWait(final By by) {
         try {
             // Waiting 30 seconds for an element to be present on the page, checking
             // for its presence once every 5 seconds.
@@ -291,6 +294,7 @@ public class ClsWebElements {
 
     /**
      * On an alert, get the text from the alert
+     * 
      * @return String text from the Alert
      */
     public String GetAlertText() {

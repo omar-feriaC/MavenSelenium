@@ -23,7 +23,7 @@ public class ClsBrowser extends ClsWebElements {
 	/**
 	 * Method to setup a {@link WebDriver} and Open it
 	 *
-	 * if Host machine is using liunux OS, {@link WebDriver} is espected to be on
+	 * if Host machine is using liunux OS, {@link WebDriver} is expected to be on
 	 * the $PATH enviroment variable
 	 */
 	public WebDriver OpenBrowser() {
