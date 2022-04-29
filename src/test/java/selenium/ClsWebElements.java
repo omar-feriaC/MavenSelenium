@@ -65,7 +65,8 @@ public class ClsWebElements {
         try {
             ClsReport.fnLog(Status.INFO, "Step - Get Web Elements: " + by.toString(), false);
             List<WebElement> pobjElement = ClsBrowser.objDriver.findElements(by);
-            ClsReport.fnLog(Status.PASS, "Step - The Web Elements: " + by.toString() + " were found as expected.", false);
+            ClsReport.fnLog(Status.PASS, "Step - The Web Elements: " + by.toString() + " were found as expected.",
+                    false);
             return pobjElement;
         } catch (Exception pobjException) {
             ClsReport.fnLog(Status.FAIL, "Step - The Web Elements: " + by.toString()
@@ -193,9 +194,7 @@ public class ClsWebElements {
      */
     public boolean SelectItem(final By by, String pMethod, String pValue) {
         try {
-            WebElement objElement = (WebElement) GetFluentWait(by);
-            objExplicitWait = new WebDriverWait(ClsBrowser.objDriver, 10);
-            objExplicitWait.until(ExpectedConditions.visibilityOfElementLocated(by));
+            WebElement objElement = getGetWebElement(by);
             Select selectObject = new Select(objElement);
 
             switch (pMethod.toUpperCase()) {
@@ -231,11 +230,20 @@ public class ClsWebElements {
     /**
      * Wait for element to load
      * 
+     * @param by {@link By} object to select the element to be waited
+     */
+    public void WaitForElement(final By by) {
+        objExplicitWait = new WebDriverWait(ClsBrowser.objDriver, 10);
+        objExplicitWait.until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
+    /**
+     * Wait for element to load
+     * 
      * @param pstrLocator Xpath String to select the element to be waited
      */
     public void WaitForElement(final String pstrLocator) {
-        objExplicitWait = new WebDriverWait(ClsBrowser.objDriver, 10);
-        objExplicitWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(pstrLocator)));
+        WaitForElement(By.xpath(pstrLocator));
     }
 
     /**

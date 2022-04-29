@@ -8,11 +8,21 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+// import Options
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+
 public class ClsBrowser extends ClsWebElements {
 
 	public static String BrowserName;
 	public static WebDriver objDriver;
 	public static WebDriverWait wait;
+
+	// Options
+	public static ChromeOptions chOpt = new ChromeOptions();
+	public static EdgeOptions edOpt = new EdgeOptions();
+	public static FirefoxOptions fxOpt = new FirefoxOptions();
 
 	private String strResourcePath = "./src/test/resources/selenium_driver";
 
@@ -31,17 +41,17 @@ public class ClsBrowser extends ClsWebElements {
 			case "CHROME":
 				if (!isUsingLinux())
 					System.setProperty("webdriver.chrome.driver", strResourcePath + "/chromedriver.exe");
-				objDriver = new ChromeDriver();
+				objDriver = new ChromeDriver(chOpt);
 				break;
 			case "EDGE":
 				if (!isUsingLinux())
 					System.setProperty("webdriver.edge.driver", strResourcePath + "/msedgedriver.exe");
-				objDriver = new EdgeDriver();
+				objDriver = new EdgeDriver(edOpt);
 				break;
 			case "FIREFOX":
 				if (!isUsingLinux())
 					System.setProperty("webdriver.geckodriver.driver", strResourcePath + "/gecko.exe");
-				objDriver = new FirefoxDriver();
+				objDriver = new FirefoxDriver(fxOpt);
 				break;
 			default:
 				System.out.println("The browser is " + BrowserName + " not supported.");
@@ -51,6 +61,7 @@ public class ClsBrowser extends ClsWebElements {
 		objDriver.manage().window().maximize();
 		objDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		objDriver.manage().deleteAllCookies();
+
 		return objDriver;
 	}
 
