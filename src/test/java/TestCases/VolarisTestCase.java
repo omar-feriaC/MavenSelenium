@@ -79,6 +79,7 @@ public class VolarisTestCase extends ClsBrowser {
 			ClsReport.fnLog(Status.PASS, "Step - Selected cheepest return", true);
 			// Finish selection 
 			fPage.continueLuggage(false);
+			fPage.checkPrice(1500);
 			ClsReport.fnLog(Status.PASS, "Final - Flight booked", true);
 		} catch (Exception e) {
 			ClsReport.fnLog(Status.FAIL,

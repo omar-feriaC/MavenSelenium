@@ -29,6 +29,8 @@ public class FlightsPage extends ClsBrowser {
 	public By confirmLuggage = By.xpath(
 			"//div[@class='baggage-modal-container ng-star-inserted']//button[@class='btn btn-large mat-flat-button mat-button-base mat-primary']");
 
+	public By finalPrice = By.xpath("//div[@class='item GrandTotal']/div/div/div[2]");
+
 	/**
 	 * Wait for the FLights page to load
 	 */
@@ -87,6 +89,19 @@ public class FlightsPage extends ClsBrowser {
 		}
 		ClsReport.fnLog(Status.INFO, "Step - Continue from extra luggage screen", false);
 		Click(confirmLuggage);
+	}
+
+	public void checkPrice(int budget) throws Exception {
+		ClsReport.fnLog(Status.INFO, "Step - Check price within budget: "+budget, false);
+		String paidPrice = getGetWebElement(finalPrice).getText();
+		paidPrice = paidPrice.replace("$", "");
+		paidPrice = paidPrice.replace(" MXN", "");
+		paidPrice = paidPrice.replace(",", "");
+		if(Integer.parseInt(paidPrice) > budget){
+			ClsReport.fnLog(Status.FAIL, "Step - Flight Price exceeds Budget", true);
+			throw new Exception("Flight exceeds price");
+		}
+		ClsReport.fnLog(Status.PASS, "Step - Flight Price is within Budget", true);
 	}
 
 	public void threadWait(int time) throws InterruptedException {
